@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net - Default Deny Everything
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Multi-tenant Security: Users can only read/write their own records
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      // Nested collections of company files, accounts, journals, and card registers
+      match /companies/{companyId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+
+        match /{allChildren=**} {
+          allow read, write: if request.auth != null && request.auth.uid == userId;
+        }
+      }
+    }
+  }
+}
