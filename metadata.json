@@ -1,0 +1,6 @@
+{
+  "name": "MYOB Accounting Cycle",
+  "description": "Sebuah aplikasi siklus akuntansi gratis mirip MYOB dengan integrasi Firestore untuk penyimpanan data, pencatatan jurnal, buku besar, neraca saldo, laporan keuangan, dan Chart of Accounts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
